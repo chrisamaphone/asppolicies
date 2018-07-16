@@ -31,11 +31,6 @@ effect(take(C,I), has(C,I)) :- action(take(C,I)).
 deletes(move(C,L), at(C,L')) :- action(move(C,L)), location(L'), not L = L'.
 deletes(take(C,I), at(I,L))  :- action(take(C,I)), location(L).
 
-% initially(Prop)
-initially(at(alice,garden)).
-initially(at(bob,foyer)).
-initially(at(key,garden)).
-
 % only generate 1 plan
 1 { happens(P) : possible(P) } 1.
 
@@ -48,6 +43,11 @@ character(bob).
 item(key).
 location(garden).
 location(foyer).
+
+% initially(Prop)
+initially(at(alice,garden)).
+initially(at(bob,foyer)).
+initially(at(key,garden)).
 
 action(move(C,L)) :- character(C), location(L).
 action(take(C,I)) :- character(C), item(I).
